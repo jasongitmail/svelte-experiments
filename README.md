@@ -3,9 +3,9 @@
 Experiments to evaluate [Svelte](https://svelte.dev/) and the official
 [Sapper framework](https://github.com/sveltejs/sapper) for Svelte.
 
-Additionally, I'm also evaluating [pnpm](https://pnpm.js.org) package manager,
-which is supposed to be faster than npm. But you can also use NPM anywhere you
-see a `pnpm` command in this README.
+This repo is also using [pnpm](https://pnpm.js.org) package manager to evaluate
+it too. But you can use NPM instead if desired, by substituting any `pnpm`
+command in this README with `npm`.
 
 ### How to run (dev)
 
@@ -26,6 +26,22 @@ pnpm run build && pnpm start
 ```
 
 Visit [localhost:3000](http://localhost:3000).
+
+### Build vs Export
+
+`build` creates a node server that can run as a serverless function; this is
+necessary for SSR.
+
+ALL routes will use SSR.
+
+`export` crawls site and generates static files. Sites that server per-user
+content or have authentication are not candidates for this. (I.e. This is only
+useful for single-purpose, Gatsby-style sites, but not for apps or mixed-use
+apps.)
+
+ALL routes will use static generation
+
+**Sapper cannot yet mix SSR, SSG, & incremental SSG routes.**
 
 ---
 
